@@ -10,7 +10,7 @@ public class ProcessadorDeAutenticacao {
 
     public ProcessadorDeAutenticacao() {
         this.first = new AutenticacaoSenha();
-        //addHandler(new AutenticacaoToken());
+        //addHandler(new AutenticacaoSMS());
     }    
     
     public void addHandler(IAutenticacaoHandler handler) {

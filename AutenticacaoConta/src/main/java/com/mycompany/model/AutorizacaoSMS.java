@@ -17,10 +17,12 @@ public class AutorizacaoSMS extends AbstractAutenticacao {
         
         System.out.println( sms );
         
-        if( nextHandler == null ) {
+        /*if( nextHandler == null ) {
             usuario.setAutenticado( true );
         } else
-            nextHandler.setNextHandler(nextHandler);
+            nextHandler.setNextHandler(nextHandler);*/
+        
+        return null;
     }
     
 }

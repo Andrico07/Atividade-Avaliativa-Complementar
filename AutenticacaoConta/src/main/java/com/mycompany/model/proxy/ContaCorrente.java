@@ -39,11 +39,11 @@ public class ContaCorrente implements ContaCorrenteProxy {
     public void sacar(double valor) {
         usuarioAcesso = processadorAutenticacao.verificarAutenticacao();
         if(usuarioAcesso != null) {
-            processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "sacar");
-            if(usuarioAcesso.isAutorizado() && usuarioAcesso.equals(usuarioConta) && valor <= contaCorrenteReal.getSaldo()) {
+            //processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "sacar");
+            //if(usuarioAcesso.isAutorizado() && usuarioAcesso.equals(usuarioConta) && valor <= contaCorrenteReal.getSaldo()) {
                 contaCorrenteReal.sacar(valor);
                 System.out.println("Valor de " + valor + " sacado com sucesso.");
-            } else if(valor <= contaCorrenteReal.getSaldo())
+            /*} else*/ if(valor <= contaCorrenteReal.getSaldo())
                 System.out.println("Usuário não autorizado.");
             else
                 System.out.println("Saldo insuficiente");
@@ -54,11 +54,11 @@ public class ContaCorrente implements ContaCorrenteProxy {
     public void pagar(double valor) {
         usuarioAcesso = processadorAutenticacao.verificarAutenticacao();
         if(usuarioAcesso != null) {
-            processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "pagar");
-            if(usuarioAcesso.isAutorizado() && usuarioAcesso.equals(usuarioConta) && contaCorrenteReal.getSaldo() <= 0) {
+            //processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "pagar");
+            //if(usuarioAcesso.isAutorizado() && usuarioAcesso.equals(usuarioConta) && contaCorrenteReal.getSaldo() <= 0) {
                 contaCorrenteReal.pagar(valor);
                 System.out.println("Valor de " + valor + " pago com sucesso.");
-            } else if(contaCorrenteReal.getSaldo() <= 0)
+            /*} else*/ if(contaCorrenteReal.getSaldo() <= 0)
                 System.out.println("Usuário não autorizado.");
             else
                 System.out.println("Saldo insuficiente (0 ou negativo)");        
@@ -69,11 +69,11 @@ public class ContaCorrente implements ContaCorrenteProxy {
     public void transferir(double valor, ContaCorrente contaDestino) {
         usuarioAcesso = processadorAutenticacao.verificarAutenticacao();
         if(usuarioAcesso != null) {
-            processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "transferir");
-            if(usuarioAcesso.isAutorizado() && usuarioAcesso.equals(usuarioConta) && contaCorrenteReal.getSaldo() <= 0) {
+            //processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "transferir");
+            //if(usuarioAcesso.isAutorizado() && usuarioAcesso.equals(usuarioConta) && contaCorrenteReal.getSaldo() <= 0) {
                 contaCorrenteReal.transferir(valor, contaDestino);
                 System.out.println("Valor de " + valor + " pago com sucesso.");
-        } else if(contaCorrenteReal.getSaldo() <= 0)
+        /*} else*/ if(contaCorrenteReal.getSaldo() <= 0)
             System.out.println("Usuário não autorizado.");
         else
             System.out.println("Saldo insuficiente (0 ou negativo)");

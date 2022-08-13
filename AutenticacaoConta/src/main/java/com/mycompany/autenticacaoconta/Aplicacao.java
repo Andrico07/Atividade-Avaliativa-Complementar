@@ -1,5 +1,6 @@
 package com.mycompany.autenticacaoconta;
 
+import com.mycompany.model.Autorizacaofacade;
 import java.util.Random;
 
 import com.mycompany.model.Usuario;
@@ -19,11 +20,15 @@ public class Aplicacao {
 		System.out.println( sms );
 
 		BancoSimulator dao = BancoSimulator.getInstancia();
+                Autorizacaofacade facade = new Autorizacaofacade();
 		Usuario mario = new Usuario( "mario", "cliente", "mario", "bros" );
 		Usuario didico = new Usuario( "Didico", "cliente", "didico", "darksouls" );
 		dao.insert( mario );
 		dao.insert( didico );
 		ContaCorrente conta1 = new ContaCorrente( mario, "1846", 10000 );
+                
+                facade.adicionarAutorizacao(mario);
+                facade.adicionarAutorizacao(didico);
                
 
 		System.out.println( conta1.getSaldo() );

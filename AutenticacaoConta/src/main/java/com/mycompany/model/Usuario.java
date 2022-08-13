@@ -1,5 +1,6 @@
 package com.mycompany.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Usuario {
@@ -19,6 +20,7 @@ public class Usuario {
 		this.senha = senha;
 		this.autorizado = false;
 		this.autenticado = false;
+                autorizacoes = new HashSet<>();
 	}
 
 	public String getNome() {
