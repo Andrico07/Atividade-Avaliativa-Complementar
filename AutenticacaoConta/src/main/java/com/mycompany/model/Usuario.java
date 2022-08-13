@@ -2,73 +2,72 @@ package com.mycompany.model;
 
 import java.util.Set;
 
-
 public class Usuario {
-    
-    private String nome;
-    private String perfil;
-    private String nomeUsuario;
-    private String senha;
-    private boolean autorizado;
-    private boolean autenticado;
-    private Set<String> autorizacoes;
 
-    public Usuario(String nome, String perfil, String usuario, String senha) {
-        this.nome = nome;
-        this.perfil = perfil;
-        this.nomeUsuario = usuario;
-        this.senha = senha;
-        this.autorizado = false;
-        this.autenticado = false;
-    }
+	private String nome;
+	private String perfil;
+	private String nomeUsuario;
+	private String senha;
+	private boolean autorizado;
+	private boolean autenticado;
+	private Set<String> autorizacoes;
 
-    public String getNome() {
-        return nome;
-    }
+	public Usuario( String nome, String perfil, String usuario, String senha ) {
+		this.nome = nome;
+		this.perfil = perfil;
+		this.nomeUsuario = usuario;
+		this.senha = senha;
+		this.autorizado = false;
+		this.autenticado = false;
+	}
 
-    public String getNomeUsuario() {
-        return nomeUsuario;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public String getSenha() {
-        return senha;
-    }
+	public String getNomeUsuario() {
+		return nomeUsuario;
+	}
 
-    public boolean isAutorizado() {
-        return autorizado;
-    }
+	public String getSenha() {
+		return senha;
+	}
 
-    public boolean isAutenticado() {
-        return autenticado;
-    }
+	public boolean isAutorizado() {
+		return autorizado;
+	}
 
-    void setAutorizado(boolean autorizado) {
-        this.autorizado = autorizado;
-    }
+	public boolean isAutenticado() {
+		return autenticado;
+	}
 
-    void setAutenticado(boolean autenticado) {
-        this.autenticado = autenticado;
-    }
+	void setAutorizado( boolean autorizado ) {
+		this.autorizado = autorizado;
+	}
 
-    public Set<String> getAutorizacoes() {
-        return autorizacoes;
-    }
-    
-    void add(String autorizacao) {
-        autorizacoes.add(autorizacao);
-    }
+	void setAutenticado( boolean autenticado ) {
+		this.autenticado = autenticado;
+	}
 
-    public String getPerfil() {
-        return perfil;
-    }
+	public Set<String> getAutorizacoes() {
+		return autorizacoes;
+	}
 
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
-    }
+	void add( String autorizacao ) {
+		autorizacoes.add( autorizacao );
+	}
 
-    @Override
-    public String toString() {
-        return "Usuario{" + "nome=" + nome + ", perfil=" + perfil + ", nomeUsuario=" + nomeUsuario + ", senha=" + senha + ", autorizado=" + autorizado + ", autenticado=" + autenticado + ", autorizacoes=" + autorizacoes + '}';
-    }
-    
+	public String getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil( String perfil ) {
+		this.perfil = perfil;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario{" + "nome=" + nome + ", perfil=" + perfil + ", nomeUsuario=" + nomeUsuario + ", senha=" + senha + ", autorizado=" + autorizado + ", autenticado=" + autenticado + ", autorizacoes=" + autorizacoes + '}';
+	}
+
 }
