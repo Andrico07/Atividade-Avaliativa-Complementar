@@ -6,17 +6,10 @@ import com.mycompany.model.Usuario;
 
 public class ContaCorrente implements ContaCorrenteProxy {
 
-    private String numero;
-    private double saldo;
-    private boolean ativa;
-    private Usuario usuario;
-    private ContaCorrenteReal contaCorrenteReal;
+
+    private final ContaCorrenteReal contaCorrenteReal;
 
     public ContaCorrente(Usuario usuario, String numero, double saldoInicial) {
-        this.usuario = usuario;
-        this.numero = numero;
-        this.saldo = saldoInicial;
-        this.ativa = false;
         contaCorrenteReal = new ContaCorrenteReal(usuario, numero, saldoInicial);
     }
     
@@ -27,19 +20,19 @@ public class ContaCorrente implements ContaCorrenteProxy {
     
     @Override
     public void sacar(double valor) {
-        if(valor <= saldo)
+        if(valor <= contaCorrenteReal.getSaldo())
             contaCorrenteReal.sacar(valor);
     }
     
     @Override
     public void pagar(double valor) {
-        if(valor <= saldo)
+        if(valor <= contaCorrenteReal.getSaldo())
             contaCorrenteReal.pagar(valor);
     }
     
     @Override
     public void transferir(double valor, ContaCorrente contaDestino) {
-        if(valor <= saldo)
+        if(valor <= contaCorrenteReal.getSaldo())
             contaCorrenteReal.transferir(valor, contaDestino);
     }
     
