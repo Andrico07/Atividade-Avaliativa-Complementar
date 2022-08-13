@@ -1,7 +1,6 @@
 package com.mycompany.autenticacaoconta;
 
 import com.mycompany.model.Autorizacaofacade;
-import java.util.Random;
 
 import com.mycompany.model.Usuario;
 import com.mycompany.model.DAO.BancoSimulator;

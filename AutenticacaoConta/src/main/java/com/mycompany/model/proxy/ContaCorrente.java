@@ -114,7 +114,11 @@ public class ContaCorrente implements ContaCorrenteProxy {
 
     @Override
     public double getSaldo() {
+        usuarioAcesso = processadorAutenticacao.verificarAutenticacao();
+        if(usuarioAcesso != null)
             return contaCorrenteReal.getSaldo();
+        else
+            return -1;
     }
 
     @Override
