@@ -9,7 +9,9 @@ public class Aplicacao {
 	public static void main( String[] args ) {
 		BancoSimulator dao = BancoSimulator.getInstancia();
 		Usuario mario = new Usuario( "mario", "cliente", "mario", "bros" );
+		Usuario didico = new Usuario( "Didico", "cliente", "didico", "darksouls" );
 		dao.insert( mario );
+		dao.insert( didico );
 		ContaCorrente conta1 = new ContaCorrente( mario, "1846", 10000 );
 
 		System.out.println( conta1.getSaldo() );

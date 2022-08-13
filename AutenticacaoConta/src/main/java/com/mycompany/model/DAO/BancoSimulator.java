@@ -38,7 +38,6 @@ public class BancoSimulator {
 	public Usuario findNomeUsuarioSenha( String usuario, String senha ) {
 		for( Usuario user : banco ) {
 			if( user.getNomeUsuario().equals( usuario ) && user.getSenha().equals( senha ) ) {
-				System.out.println( "ssssssssssssss" );
 				return user;
 			}
 		}
