@@ -1,4 +1,4 @@
-package DAO;
+package com.mycompany.model.DAO;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class BancoSimulator {
 		return false;
 	}
 
-	Usuario findNomeUsuarioSenha( String usuario, String senha ) {
+	public Usuario findNomeUsuarioSenha( String usuario, String senha ) {
 		for( Usuario user : banco ) {
 			if( user.getNomeUsuario().equals( usuario ) && user.getSenha().equals( senha ) ) {
 				return user;

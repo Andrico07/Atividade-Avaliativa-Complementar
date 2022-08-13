@@ -5,7 +5,7 @@ import com.mycompany.model.Usuario;
 
 public interface IAutenticacaoHandler {
     
-    public void verificarAutenticacao(Usuario usuario);
+    public Usuario verificarAutenticacao();
     
     public void setNextHandler(IAutenticacaoHandler handler);
     

@@ -1,5 +1,6 @@
 package com.mycompany.model;
 
+import com.mycompany.model.DAO.BancoSimulator;
 import com.mycompany.model.chain.AbstractAutenticacao;
 import java.util.Scanner;
 
@@ -7,22 +8,26 @@ import java.util.Scanner;
 public class AutenticacaoSenha extends AbstractAutenticacao {
 
     @Override
-    public void verificarAutenticacao(Usuario usuario) {
+    public Usuario verificarAutenticacao() {
         Scanner scan = new Scanner(System.in);
+        BancoSimulator dao = new BancoSimulator();
         System.out.println("Digite seu nome de usuário: ");
         String nomeUsuario = scan.next();
         System.out.println("Digite sua senha: ");
         String senha = scan.next();
-        if(nomeUsuario.equals(usuario.getNomeUsuario()) && senha.equals(usuario.getSenha()))
-            if(nextHandler == null)
+        var usuario = dao.findNomeUsuarioSenha(nomeUsuario, senha);
+        if(usuario != null) {
+            if(nextHandler == null) {
                 usuario.setAutenticado(true);
+                return usuario;
+            }
             else
-                nextHandler.verificarAutenticacao(usuario);
-        else {
+                return nextHandler.verificarAutenticacao();
+        } else {
             System.out.println("Nome de usuário ou senha inválidos. Por favor, tente novamente.");
-            usuario.setAutorizado(false);
-        }
-        
+            return null;
+            //usuario.setAutorizado(false);
+        }     
     }
     
 }

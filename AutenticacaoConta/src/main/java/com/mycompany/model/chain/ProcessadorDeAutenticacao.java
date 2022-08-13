@@ -3,7 +3,6 @@ package com.mycompany.model.chain;
 import com.mycompany.model.AutenticacaoSenha;
 import com.mycompany.model.Usuario;
 
-
 public class ProcessadorDeAutenticacao {
     
     private IAutenticacaoHandler first;
@@ -18,8 +17,8 @@ public class ProcessadorDeAutenticacao {
         this.first.setNextHandler(handler);
     }
     
-    public void verificarAutenticacao(Usuario usuario) {
-        this.first.verificarAutenticacao(usuario);
+    public Usuario verificarAutenticacao() {
+        return this.first.verificarAutenticacao();
     }
 
     public void setFirst(IAutenticacaoHandler first) {
