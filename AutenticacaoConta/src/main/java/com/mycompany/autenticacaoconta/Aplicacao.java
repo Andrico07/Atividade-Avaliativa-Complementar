@@ -20,14 +20,17 @@ public class Aplicacao {
 
 		BancoSimulator dao = BancoSimulator.getInstancia();
                 Autorizacaofacade facade = new Autorizacaofacade();
-		Usuario mario = new Usuario( "mario", "cliente", "mario", "bros" );
-		Usuario didico = new Usuario( "Didico", "cliente", "didico", "darksouls" );
+		Usuario mario = new Usuario( "Mario", "Cliente", "mario", "bros" );
+		Usuario didico = new Usuario( "Andrico", "Cliente", "didico", "darksouls" );
+                Usuario clayton = new Usuario( "Clayton", "GerenteDoBanco", "clayton", "gangof4" );
 		dao.insert( mario );
 		dao.insert( didico );
+                dao.insert( clayton );
 		ContaCorrente conta1 = new ContaCorrente( mario, "1846", 10000 );
                 
                 facade.adicionarAutorizacao(mario);
                 facade.adicionarAutorizacao(didico);
+                facade.adicionarAutorizacao(clayton);
                
 
 		System.out.println( conta1.getSaldo() );
