@@ -1,5 +1,7 @@
 package com.mycompany.autenticacaoconta;
 
+import java.util.Random;
+
 import com.mycompany.model.Usuario;
 import com.mycompany.model.DAO.BancoSimulator;
 import com.mycompany.model.proxy.ContaCorrente;
@@ -7,6 +9,15 @@ import com.mycompany.model.proxy.ContaCorrente;
 public class Aplicacao {
 
 	public static void main( String[] args ) {
+
+		String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		Random gerador = new Random();
+		String sms = new String();
+		for( int i = 0; i < 6; i++ ) {
+			sms = sms + ( letras.charAt( gerador.nextInt( letras.length() ) ) );
+		}
+		System.out.println( sms );
+
 		BancoSimulator dao = BancoSimulator.getInstancia();
 		Usuario mario = new Usuario( "mario", "cliente", "mario", "bros" );
 		Usuario didico = new Usuario( "Didico", "cliente", "didico", "darksouls" );

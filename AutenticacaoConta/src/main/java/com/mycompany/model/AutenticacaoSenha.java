@@ -9,6 +9,7 @@ public class AutenticacaoSenha extends AbstractAutenticacao {
 
 	@Override
 	public Usuario verificarAutenticacao() {
+
 		Scanner scan = new Scanner( System.in );
 		BancoSimulator dao = BancoSimulator.getInstancia();
 		System.out.println( "Digite seu nome de usuário: " );
@@ -27,6 +28,7 @@ public class AutenticacaoSenha extends AbstractAutenticacao {
 			return null;
 			// usuario.setAutorizado(false);
 		}
+
 	}
 
 }
