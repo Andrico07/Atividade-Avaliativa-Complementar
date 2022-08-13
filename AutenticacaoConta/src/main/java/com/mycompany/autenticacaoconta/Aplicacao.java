@@ -24,6 +24,7 @@ public class Aplicacao {
 		dao.insert( mario );
 		dao.insert( didico );
 		ContaCorrente conta1 = new ContaCorrente( mario, "1846", 10000 );
+               
 
 		System.out.println( conta1.getSaldo() );
 		conta1.sacar( 100 );
