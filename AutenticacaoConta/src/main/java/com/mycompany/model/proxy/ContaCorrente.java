@@ -115,10 +115,20 @@ public class ContaCorrente implements ContaCorrenteProxy {
     @Override
     public double getSaldo() {
         usuarioAcesso = processadorAutenticacao.verificarAutenticacao();
-        if(usuarioAcesso != null)
-            return contaCorrenteReal.getSaldo();
-        else
+        if(usuarioAcesso != null) {
+            processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "getSaldo");
+            if(usuarioAcesso.isAutorizado()) {
+                return contaCorrenteReal.getSaldo();
+            }
+            else {
+                System.out.println("Usuário não autorizado.");
+                return -1;
+            }
+        }
+        else{
+            System.out.println("Usuário não autorizado.");
             return -1;
+        }
     }
 
     @Override
