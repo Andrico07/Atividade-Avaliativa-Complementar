@@ -113,7 +113,7 @@ public class ContaCorrente implements ContaCorrenteProxy {
         usuarioAcesso = processadorAutenticacao.verificarAutenticacao();
         if(usuarioAcesso != null) {
             processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "getNumero");
-            if(usuarioAcesso.isAutorizado()) {
+            if(usuarioAcesso.isAutorizado() && (usuarioAcesso.equals(usuarioConta) || usuarioAcesso.getPerfil().equalsIgnoreCase("GerenteDoBanco"))) {
                 return contaCorrenteReal.getNumero();
             } else {
                 System.out.println("Usuário não autorizado");
@@ -128,7 +128,7 @@ public class ContaCorrente implements ContaCorrenteProxy {
         usuarioAcesso = processadorAutenticacao.verificarAutenticacao();
         if(usuarioAcesso != null) {
             processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "getSaldo");
-            if(usuarioAcesso.isAutorizado()) {
+            if(usuarioAcesso.isAutorizado() && (usuarioAcesso.equals(usuarioConta) || usuarioAcesso.getPerfil().equalsIgnoreCase("GerenteDoBanco"))) {
                 return contaCorrenteReal.getSaldo();
             }
             else {
