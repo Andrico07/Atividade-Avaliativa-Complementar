@@ -1,5 +1,6 @@
 package com.mycompany.model.chain;
 
+import com.mycompany.model.AutenticacaoSMS;
 import com.mycompany.model.AutenticacaoSenha;
 import com.mycompany.model.Usuario;
 
@@ -9,8 +10,8 @@ public class ProcessadorDeAutenticacao {
     
 
     public ProcessadorDeAutenticacao() {
-        this.first = new AutenticacaoSenha();
-        //addHandler(new AutenticacaoSMS());
+        this.first = new AutenticacaoSMS();
+        addHandler(new AutenticacaoSenha());
     }    
     
     public void addHandler(IAutenticacaoHandler handler) {

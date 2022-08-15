@@ -18,7 +18,6 @@ public class Autorizacaofacade {
 		if( user.getPerfil().equalsIgnoreCase( "GerenteDoBanco" ) ) {
 			user.add( "ativar" );
 			user.add( "desativar" );
-			user.add( "transferir" );
 			user.add( "getSaldo" );
 			user.add( "getNumero" );
 			user.add( "isAtiva" );

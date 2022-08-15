@@ -26,7 +26,6 @@ public class AutenticacaoSenha extends AbstractAutenticacao {
 		} else {
 			System.out.println( "Nome de usuário ou senha inválidos. Por favor, tente novamente." );
 			return null;
-			// usuario.setAutorizado(false);
 		}
 
 	}
