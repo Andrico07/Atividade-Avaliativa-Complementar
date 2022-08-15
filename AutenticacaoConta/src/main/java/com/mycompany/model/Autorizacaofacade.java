@@ -1,6 +1,6 @@
 package com.mycompany.model;
 
-public class Autorizacaofacade {
+public class AutorizacaoFacade {
 
 	public void adicionarAutorizacao( Usuario user ) {
 		if( user.getPerfil().equalsIgnoreCase( "cliente" ) ) {
