@@ -1,6 +1,6 @@
 package com.mycompany.autenticacaoconta;
 
-import com.mycompany.model.Autorizacaofacade;
+import com.mycompany.model.AutorizacaoFacade;
 
 import com.mycompany.model.Usuario;
 import com.mycompany.model.DAO.BancoSimulator;
@@ -11,7 +11,7 @@ public class Aplicacao {
     public static void main( String[] args ) {
         
         BancoSimulator dao = BancoSimulator.getInstancia();
-        Autorizacaofacade facade = new Autorizacaofacade();
+        AutorizacaoFacade facade = new AutorizacaoFacade();
         
         Usuario mario = new Usuario("Mario", "Cliente", "mario", "bros");
         Usuario andrico = new Usuario("Andrico", "Cliente", "didico", "darksouls");
