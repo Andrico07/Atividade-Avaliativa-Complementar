@@ -26,7 +26,7 @@ public class ContaCorrente implements ContaCorrenteProxy {
         usuarioAcesso = processadorAutenticacao.verificarAutenticacao();
         if(usuarioAcesso != null) {
             processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "depositar");
-            if(usuarioAcesso.isAutorizado()) {
+            if(usuarioAcesso.isAutorizado() && contaCorrenteReal.isAtiva()) {
                 contaCorrenteReal.depositar(valor);
                 System.out.println("Valor de " + valor + " depositado com sucesso.");
             }
@@ -40,7 +40,7 @@ public class ContaCorrente implements ContaCorrenteProxy {
         usuarioAcesso = processadorAutenticacao.verificarAutenticacao();
         if(usuarioAcesso != null) {
             processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "sacar");
-            if(usuarioAcesso.isAutorizado() && usuarioAcesso.equals(usuarioConta) && valor <= contaCorrenteReal.getSaldo()) {
+            if(usuarioAcesso.isAutorizado() && usuarioAcesso.equals(usuarioConta) && valor <= contaCorrenteReal.getSaldo() && contaCorrenteReal.isAtiva()) {
                 contaCorrenteReal.sacar(valor);
                 System.out.println("Valor de " + valor + " sacado com sucesso.");
             } else if(valor <= contaCorrenteReal.getSaldo())
@@ -55,13 +55,13 @@ public class ContaCorrente implements ContaCorrenteProxy {
         usuarioAcesso = processadorAutenticacao.verificarAutenticacao();
         if(usuarioAcesso != null) {
             processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "pagar");
-            if(usuarioAcesso.isAutorizado() && usuarioAcesso.equals(usuarioConta) && contaCorrenteReal.getSaldo() <= 0) {
+            if(usuarioAcesso.isAutorizado() && usuarioAcesso.equals(usuarioConta) && contaCorrenteReal.getSaldo() >= valor && contaCorrenteReal.isAtiva()) {
                 contaCorrenteReal.pagar(valor);
                 System.out.println("Valor de " + valor + " pago com sucesso.");
-            } else if(contaCorrenteReal.getSaldo() <= 0)
+            } else if(contaCorrenteReal.getSaldo() >= valor)
                 System.out.println("Usuário não autorizado.");
             else
-                System.out.println("Saldo insuficiente (0 ou negativo)");        
+                System.out.println("Saldo insuficiente");        
         }
     }
     
@@ -70,13 +70,14 @@ public class ContaCorrente implements ContaCorrenteProxy {
         usuarioAcesso = processadorAutenticacao.verificarAutenticacao();
         if(usuarioAcesso != null) {
             processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "transferir");
-            if(usuarioAcesso.isAutorizado() && usuarioAcesso.equals(usuarioConta) && contaCorrenteReal.getSaldo() <= 0) {
+            if(usuarioAcesso.isAutorizado() && usuarioAcesso.equals(usuarioConta) && contaCorrenteReal.getSaldo() >= valor && contaCorrenteReal.isAtiva()) {
                 contaCorrenteReal.transferir(valor, contaDestino);
-                System.out.println("Valor de " + valor + " pago com sucesso.");
-        } else if(contaCorrenteReal.getSaldo() <= 0)
+                contaCorrenteReal.sacar(valor);
+                System.out.println("Valor de " + valor + " transferido com sucesso.");
+        } else if(contaCorrenteReal.getSaldo() >= valor)
             System.out.println("Usuário não autorizado.");
         else
-            System.out.println("Saldo insuficiente (0 ou negativo)");
+            System.out.println("Saldo insuficiente");
         }
     }
     
@@ -98,7 +99,7 @@ public class ContaCorrente implements ContaCorrenteProxy {
     public void desativar() {
         usuarioAcesso = processadorAutenticacao.verificarAutenticacao();
         if(usuarioAcesso != null) {
-            processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "ativar");
+            processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "desativar");
             if(usuarioAcesso.isAutorizado()) {
                 contaCorrenteReal.ativar();
                 System.out.println("Conta ativada com sucesso.");  
@@ -109,7 +110,17 @@ public class ContaCorrente implements ContaCorrenteProxy {
 
     @Override
     public String getNumero() {
-            return contaCorrenteReal.getNumero();
+        usuarioAcesso = processadorAutenticacao.verificarAutenticacao();
+        if(usuarioAcesso != null) {
+            processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "getNumero");
+            if(usuarioAcesso.isAutorizado()) {
+                return contaCorrenteReal.getNumero();
+            } else {
+                System.out.println("Usuário não autorizado");
+                return null;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -133,12 +144,32 @@ public class ContaCorrente implements ContaCorrenteProxy {
 
     @Override
     public boolean isAtiva() {
-            return contaCorrenteReal.isAtiva();
+        usuarioAcesso = processadorAutenticacao.verificarAutenticacao();
+        if(usuarioAcesso != null) {
+            processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "isAtiva");
+            if(usuarioAcesso.isAutorizado()) {
+                return contaCorrenteReal.isAtiva();
+            } else {
+                System.out.println("Usuário não autorizado");
+                return false;
+            }
+        }
+        return false;
     }
 
     @Override
     public Usuario getUsuario() {
-            return contaCorrenteReal.getUsuario();
+        usuarioAcesso = processadorAutenticacao.verificarAutenticacao();
+        if(usuarioAcesso != null) {
+            processadorAutorizacao.verificarAutorizacao(usuarioAcesso, "getUsuario");
+            if(usuarioAcesso.isAutorizado()) {
+                return contaCorrenteReal.getUsuario();
+            } else {
+                System.out.println("Usuário não autorizado");
+                return null;
+            }
+        }
+        return null;
     }
     
 }
